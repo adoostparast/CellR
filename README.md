@@ -3,7 +3,7 @@ CellR is a single cell-based data-driven method to recover and quantify the cell
 # Arguments
 The general format for calling CellR is: Output<-Deconvolution(RNA-seq, scRNA-seq, GTEx, Minimum-cells, Minimum genes, Dimension, Alpha)
 
-CellR receives seven input arguments as follows:
+CellR arguments are explined in detail as follows:
 * **Reference scRNA-seq data**
 Reference scRNA-seq data is a tab delimited text file whose rows represent the unique gene names and each column represents a cell. Note that the upper left most element of the file should be empty.
 CellR receives scRNA-seq file as a non-normalized raw counts matrix.
