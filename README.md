@@ -11,3 +11,6 @@ CellR receives scRNA-seq file as a non-normalized raw counts matrix.
 * **Bulk RNA-seq data**
 Bulk RNA-seq data is a tab delimited text file whose rows represent the unique gene names and each column represents a sample. Note that the upper left most element of the file should be empty.
 CellR receives RNA-seq file as a non-normalized raw counts matrix.
+
+* **GTEx TPM data**
+GTEx data is a tab delimited text file whose rows represent the unique gene names and each column represents a sample individual. Note that the upper left most element of the file should be empty. For any human tissue, relevant GTEx data can be obtained from GTEx portal: https://gtexportal.org/home/
