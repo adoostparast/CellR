@@ -31,4 +31,5 @@ The total number of the top pincipal components (PCs) used for clustering the re
 * **Alpha**
 Alpha is a term used for taking into account inter/intra cellular differences during the optimization process. Alpha=1 indicates lasso mode and Alpha=0 denotes the ridge mode.
 
-
+# Output
+CellR outputs a list with two arguments: (1) a table containing the cells and their corresponding clusters; (2) Percentage of the proportion of each identified cluster from the reference scRNA-seq data within the bulk RNA-seq sample.
