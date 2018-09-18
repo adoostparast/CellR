@@ -3,7 +3,7 @@ CellR is a single cell-based data-driven method to recover and quantify the cell
 # Installation
 CellR contains some dependencies. Please make sure to have the following packages installed on your machine before running CellR: dplyr, Matrix, Seurat, EdgeR, glmnet.
 
-CellR can be installed from source after downloading the CellR zip file using: install.packages("CellR_0.1.0.tar.gz"). Next, it should be loaded using: library('CellR').
+CellR can be installed from source after downloading the CellR zip file using: install.packages("CellR_0.1.0.tar.gz"). Next, it can be loaded using: library('CellR').
 # Arguments
 The general format for calling CellR is: Output<-Deconvolution(RNA-seq, scRNA-seq, GTEx, Minimum-cells, Minimum-genes, Dimension, Alpha)
 
