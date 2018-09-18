@@ -1,5 +1,9 @@
 # CellR
 CellR is a single cell-based data-driven method to recover and quantify the cellular composition of bulk transcriptional data. It is a fully unsupervised approach based on clustering the reference single-cell RNA-Seq (scRNA-seq) followed by extracting the unique marker genes defining each cell cluster. 
+# Installation
+CellR contains some dependencies. Please make sure to have the following packages installed on your machine before running CellR: dplyr, Matrix, Seurat, EdgeR, glmnet.
+
+CellR can be installed from source after downloading the CellR zip file using: install.packages("CellR_0.1.0.tar.gz")
 # Arguments
 The general format for calling CellR is: Output<-Deconvolution(RNA-seq, scRNA-seq, GTEx, Minimum-cells, Minimum-genes, Dimension, Alpha)
 
@@ -27,7 +31,4 @@ The total number of the top pincipal components (PCs) used for clustering the re
 * **Alpha**
 Alpha is a term used for taking into account inter/intra cellular differences during the optimization process. Alpha=1 indicates lasso mode and Alpha=0 denotes ridge mode.
 
-# Installation
-CellR contains some dependencies. Please make sure to have the following packages installed on your machine before running CellR: dplyr, Matrix, Seurat, EdgeR, glmnet.
 
-CellR can be installed from source after downloading the CellR zip file using: install.packages("CellR_0.1.0.tar.gz")
