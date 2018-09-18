@@ -29,3 +29,5 @@ Alpha is a term used for taking into account inter/intra cellular differences du
 
 # Installation
 CellR contains some dependencies. Please make sure to have the following packages installed on your machine before running CellR: dplyr, Matrix, Seurat, EdgeR, glmnet.
+
+CellR can be installed from source after downloading the 
