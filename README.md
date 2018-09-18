@@ -16,10 +16,10 @@ CellR receives RNA-seq file as a non-normalized raw counts matrix.
 GTEx data is a tab delimited text file whose rows represent the unique gene names and each column represents a sample individual. Note that the upper left most element of the file should be empty. For any human tissue, relevant GTEx data can be obtained from GTEx portal: https://gtexportal.org/home/.
 
 * **Minimum-cells**
-CellR keeps all the genes being expressed in > Minimum-cells.
+CellR keeps all the genes being expressed in > Minimum-cells (Minimum-cells>=3 is used in our experiments).
 
 * **Minimum-genes**
-CellR keeps all the cells with at least "Minimum-genes" identified genes.
+CellR keeps all the cells with at least "Minimum-genes" identified genes (Minimum-genes>=200 is used in our experiments).
 
 * **Dimension**
 The total number of the top pincipal components (PCs) used for clustering the reference scRNA-seq data. Clustering is the backbone of CellR, so we strongly recommend accurately setting Dimension. Wesed Dimension=12 in our manuscript. Readers are encouraged to read more about how to obtain the best number of PCs for clustering: https://satijalab.org/seurat/pbmc3k_tutorial.html
@@ -28,4 +28,4 @@ The total number of the top pincipal components (PCs) used for clustering the re
 Alpha is a term used for taking into account inter/intra cellular differences during the optimization process. Alpha=1 indicates lasso mode and Alpha=0 denotes ridge mode.
 
 # Installation
-CellR contains some dependencies. Please make sure to have the following packages installed on your machine befire running CellR: dplyr, Matrix, Seurat, EdgeR, glmnet.
+CellR contains some dependencies. Please make sure to have the following packages installed on your machine before running CellR: dplyr, Matrix, Seurat, EdgeR, glmnet.
