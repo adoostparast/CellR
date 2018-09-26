@@ -5,7 +5,8 @@ CellR bears some dependencies including plyr, Matrix, Seurat, EdgeR, glmnet. Ple
 
 CellR can be installed from source after downloading the CellR zip file using: install.packages("CellR_0.1.0.tar.gz"). Next, it can be loaded using: library('CellR').
 # Arguments
-The general format for calling CellR is: Output<-Deconvolution(RNA-seq, scRNA-seq, GTEx, Minimum-cells, Minimum-genes, Dimension, Alpha)
+The general format for calling CellR is: 
+Output<-Deconvolution(RNA-seq, scRNA-seq, GTEx, Cell-types, Minimum-cells, Minimum-genes, Dimension, Alpha, Maximum_gene_counts, Minimum_gene_counts)
 
 CellR arguments are explined in detail as follows:
 * **Reference scRNA-seq data**
@@ -19,6 +20,9 @@ CellR receives RNA-seq file as a non-normalized raw counts matrix.
 * **GTEx TPM data**
 GTEx data is a tab delimited text file whose rows represent the unique gene symbols and each column represents an individual sample. Note that the upper left most element of the file should be empty. For any human tissue, relevant GTEx data can be obtained from GTEx portal: https://gtexportal.org/home/.
 
+* **Cell-types**
+A column vector with rows indicating the cell IDs exactly as is in the reference scRNA-seq data, and the column denotes the cell type of each cell.
+
 * **Minimum-cells**
 CellR keeps all the genes being expressed in > Minimum-cells (Minimum-cells>=3 is used in our experiments).
 
@@ -30,6 +34,12 @@ The total number of the top pincipal components (PCs) used for clustering the re
 
 * **Alpha**
 Alpha is a term used for taking into account inter/intra cellular differences during the optimization process. Alpha=1 indicates lasso mode and Alpha=0 denotes the ridge mode.
+
+* **Maximum_gene_counts**
+Genes with unique counts over 'Maximum_gene_counts' will be filtered out.
+
+* **Minimum_gene_counts**
+Genes with unique counts less than 'Minimum_gene_counts' will be filtered out.
 
 # Output
 CellR outputs a list with two arguments: (1) a table containing the cells and their corresponding clusters; (2) Percentage of the proportion of each identified cluster from the reference scRNA-seq data within the bulk RNA-seq sample.
