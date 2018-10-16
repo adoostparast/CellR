@@ -42,4 +42,4 @@ Genes with unique counts over 'Maximum_gene_counts' will be filtered out.
 Genes with unique counts less than 'Minimum_gene_counts' will be filtered out.
 
 # Output
-CellR outputs a list with two arguments: (1) a table containing the cells and their corresponding clusters; (2) Percentage of the proportion of each identified cluster from the reference scRNA-seq data within the bulk RNA-seq sample.
+CellR outputs the percentage of the proportion of each identified cluster from the reference scRNA-seq data within the bulk RNA-seq sample.
