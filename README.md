@@ -21,7 +21,7 @@ CellR receives RNA-seq file as a non-normalized raw counts matrix.
 GTEx data is a tab delimited text file whose rows represent the unique gene symbols and each column represents an individual sample. Note that the upper left most element of the file should be empty. For any human tissue, relevant GTEx data can be obtained from GTEx portal: https://gtexportal.org/home/.
 
 * **Cell-types**
-A column vector with rows indicating the cell IDs exactly as is in the reference scRNA-seq data, and the column denotes the cell type of each cell.
+A column vector with rows indicating the cell IDs exactly as is in the reference scRNA-seq data, and the column denotes the cell type of each cell. Note that the first cell in the first column should be empty.
 
 * **Minimum-cells**
 CellR keeps all the genes being expressed in > Minimum-cells (Minimum-cells>=3 is used in our experiments).
