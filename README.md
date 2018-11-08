@@ -1,7 +1,7 @@
 # CellR
 CellR is a single cell-based data-driven method to recover and quantify the cellular composition of bulk transcriptional data. It is a fully unsupervised approach based on clustering the reference single-cell RNA-Seq (scRNA-seq) followed by extracting the unique marker genes defining each cell cluster. 
 # Installation
-CellR bears some dependencies including dplyr, Matrix, Seurat, EdgeR, glmnet. Please make sure to have devtools installed on your machine. CellR automatically installs the required dependencies during the initial installation. However, in case of failure, users can manually install the mentioned packages.
+CellR bears some dependencies including dplyr, Matrix, Seurat, edgeR, glmnet. Please make sure to have devtools installed on your machine. CellR automatically installs the required dependencies during the initial installation. However, in case of failure, users can manually install the mentioned packages.
 
 CellR can be installed from source after downloading the CellR zip file using: install.packages("CellR_0.1.0.tar.gz"). Next, it can be loaded using: library('CellR').
 # Arguments
