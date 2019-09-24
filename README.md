@@ -46,8 +46,21 @@ Genes with unique counts over 'Maximum_gene_counts' will be filtered out.
 Genes with unique counts less than 'Minimum_gene_counts' will be filtered out.
 
 # A real example to run
-CellR bears some 
-https://www.dropbox.com/sh/pikqwjdf0bs2t88/AAAlHVe4B0pKagtTU_3BuFvva?dl=0
+For convenient use of CellR, we have created a data repository which contains the data on Alzheimer's bulk RNA-seq data being used in the paper. In the following link, https://www.dropbox.com/sh/pikqwjdf0bs2t88/AAAlHVe4B0pKagtTU_3BuFvva?dl=0, you will find four data files including: Bulk.txt which is the RNA-seq data to be deconvolved, FCortex: the reference single-cell RNA-seq data from prefrontal cortex which is used by CellR to recover the marker genes, GTExExpessionSymbols.txt: the GTEx RNA-seq data used in CellR, Cells.txt: the identity of the cells in the FCortex.txt data. We encourage the users to check the structure of each data for smooth use of the toolkit in the future.
+To run CellR using the supplied data, please use the following commands:
+
+library(CellR)
+
+Bulk<-read.table("Bulk.txt",header=TRUE)
+Single<-read.table("FCortex.txt",header=TRUE)
+GTEx<-read.table("GTExExpressionSymbol.txt",header=TRUE)
+Cells<-read.table("Cells.txt",header=TRUE)
+
+Output<-Deconvolution(Bulk,Single,GTEx,Cells,3,200,12,1,2500,1)
+------------------------------------------------------------------------------------------------------------------------
+If you have any questions, please contact me at doostparaa@email.chop.edu.
+
+
 
 # Output
 CellR outputs the percentage of the proportion of each identified cluster from the reference scRNA-seq data within the bulk RNA-seq sample as well as the identified cell type-specific markers used during the deconvolution process.
