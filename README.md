@@ -64,6 +64,8 @@ Output<-Deconvolution(Bulk,Single,GTEx,Cells,3,200,12,1,2500,1)
 'Output' is an R object with three categories. Users can extract the resilts as follows:
 
 Proportions<-Output$Proportion      # Proportions yields a table whose rows are cell-types and the columns represent a bulk samples. Each cell within the table denotes the percentage of its corresponding cell-type within its corresponding sample. Below is a snapshot of this table.
+![Capture](https://user-images.githubusercontent.com/24727526/65543165-a1ca3380-dede-11e9-82ab-b3ae398a3e90.JPG)
+
 
 
 
