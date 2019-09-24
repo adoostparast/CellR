@@ -52,8 +52,11 @@ To run CellR using the supplied data, please use the following commands:
 library(CellR)
 
 Bulk<-read.table("Bulk.txt",header=TRUE)
+
 Single<-read.table("FCortex.txt",header=TRUE)
+
 GTEx<-read.table("GTExExpressionSymbol.txt",header=TRUE)
+
 Cells<-read.table("Cells.txt",header=TRUE)
 
 Output<-Deconvolution(Bulk,Single,GTEx,Cells,3,200,12,1,2500,1)
