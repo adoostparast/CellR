@@ -69,4 +69,4 @@ If you have any questions, please contact me at doostparaa@email.chop.edu.
 
 
 # Output
-CellR outputs the percentage of the proportion of each identified cluster from the reference scRNA-seq data within the bulk RNA-seq sample as well as the identified cell type-specific markers used during the deconvolution process.
+CellR outputs an R object which includes the percentage of the proportion of each identified cluster from the reference scRNA-seq data within the bulk RNA-seq sample as well as the identified cell type-specific markers used during the deconvolution process.
