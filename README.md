@@ -1,6 +1,8 @@
+![Cellr](https://user-images.githubusercontent.com/24727526/65530825-aaaf0b00-dec6-11e9-9531-ca8a72a9abd4.JPG)
+
 # CellR
 CellR is a single cell-based data-driven method to recover and quantify the cellular composition of bulk transcriptional data. It is a fully unsupervised approach based on clustering the reference single-cell RNA-Seq (scRNA-seq) followed by extracting the unique marker genes defining each cell cluster. 
-![Cellr](https://user-images.githubusercontent.com/24727526/65530615-5146dc00-dec6-11e9-9ebb-a50c32aae530.JPG)
+
 
 # Installation
 CellR bears some dependencies including dplyr, Matrix, Seurat (v 2.3.0, To install, check this out: https://satijalab.org/seurat/install.html), edgeR, glmnet. Please make sure to have devtools installed on your machine. CellR automatically installs the required dependencies during the initial installation. However, in case of failure, users can manually install the mentioned packages. CellR is built under R vesrion 3.5.1.
