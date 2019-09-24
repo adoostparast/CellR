@@ -61,6 +61,8 @@ Cells<-read.table("Cells.txt",header=TRUE)
 
 Output<-Deconvolution(Bulk,Single,GTEx,Cells,3,200,12,1,2500,1)
 
+Note: Use of these arguments depends on the charachteristics of the data and the users can change these numbers in other applications.
+
 ------------------------------------------------------------------------------------------------------------------------
 If you have any questions, please contact me at doostparaa@email.chop.edu.
 
