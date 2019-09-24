@@ -61,6 +61,13 @@ Cells<-read.table("Cells.txt",header=TRUE)
 
 Output<-Deconvolution(Bulk,Single,GTEx,Cells,3,200,12,1,2500,1)
 
+'Output' is an R object with three categories. Users can extract the resilts as follows:
+
+Proportions<-Output$Proportion      # Proportions yields a table whose rows are cell-types and the columns represent a bulk samples. Each cell within the table denotes the percentage of its corresponding cell-type within its corresponding sample. Below is a snapshot of this table.
+
+
+
+
 Note: Use of these arguments depends on the charachteristics of the data and the users can change these numbers in other applications.
 
 ------------------------------------------------------------------------------------------------------------------------
