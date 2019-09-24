@@ -70,6 +70,10 @@ Proportions<-Output$Proportion      # 'Proportions' yields a table whose rows ar
 
 Markers<-Output$Markers   # 'Markers' is a table which shows the identified markers of each cell population which then are used in CellR. It contains the p-values of the difference of the gene expression of each signature gene in its corresponding cell cluster compared to others. Below is a snapshot of this table.
 
+![Capture](https://user-images.githubusercontent.com/24727526/65543507-464c7580-dedf-11e9-9a42-e34b34910db5.JPG)
+
+Clusters<-Output$Clusters  # 'Clusters' is a table showing the type (cluster) of each cell within the reference scRNA-seq data.
+
 
 
 
