@@ -46,7 +46,7 @@ Genes with unique counts over 'Maximum_gene_counts' will be filtered out.
 Genes with unique counts less than 'Minimum_gene_counts' will be filtered out.
 
 # A real example to run
-For convenient use of CellR, we have created a data repository which contains the data on Alzheimer's bulk RNA-seq data being used in the paper. In the following link, https://www.dropbox.com/sh/pikqwjdf0bs2t88/AAAlHVe4B0pKagtTU_3BuFvva?dl=0, you will find four data files including: Bulk.txt which is the RNA-seq data to be deconvolved, FCortex: the reference single-cell RNA-seq data from prefrontal cortex which is used by CellR to recover the marker genes, GTExExpessionSymbols.txt: the GTEx RNA-seq data used in CellR, Cells.txt: the identity of the cells in the FCortex.txt data. We encourage the users to check the structure of each data for smooth use of the toolkit in the future.
+For convenient use of CellR, we have created a data repository which contains the data on Alzheimer's bulk RNA-seq data being used in the paper. In the following link, https://drive.google.com/open?id=1M77dq0qg6E0_gT8pWwMDTexBuE7azvL4, you will find four data files including: Bulk.txt which is the RNA-seq data to be deconvolved, FCortex: the reference single-cell RNA-seq data from prefrontal cortex which is used by CellR to recover the marker genes, GTExExpessionSymbols.txt: the GTEx RNA-seq data used in CellR, Cells.txt: the identity of the cells in the FCortex.txt data. We encourage the users to check the structure of each data for smooth use of the toolkit in the future.
 To run CellR using the supplied data, please use the following commands:
 
 library(CellR)
