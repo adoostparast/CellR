@@ -80,11 +80,14 @@ Clusters<-Output$Clusters  # 'Clusters' is a table showing the type (cluster) of
 Note: Use of these arguments depends on the charachteristics of the data and the users can change these numbers in other applications.
 
 
-Estimating cell-specific gene expression profiles using CellR:
+# Estimating cell-specific gene expression profiles using CellR
 
-In order to estimate cell specific gene expression profiles from RNA-seq count metrices, users can use the following function in CellR:
-
+In order to estimate cell specific gene expression profiles from RNA-seq count metrices, users can use the following function in CellR: 
 Expression_estimate<-function(Data, Proportion, Cell_type)
+Here, 'Data' is the raw count matrix; 'Proportion' is the cellular proportion of each cell type in each sample where each row is a sample and each column denotes a cell-type; and 'Cell_type' is the column number in the Proportion matrix for which we wan to estimate its specific expression profile.
+
+Note that the syntax of both matrices in the function 'Expression_estimate' is exactly as the matrices shown above.
+
 ------------------------------------------------------------------------------------------------------------------------
 If you have any questions, please contact me at doostparaa@email.chop.edu.
 
@@ -92,3 +95,4 @@ If you have any questions, please contact me at doostparaa@email.chop.edu.
 
 # Output
 CellR outputs an R object which includes the percentage of the proportion of each identified cluster from the reference scRNA-seq data within the bulk RNA-seq sample as well as the identified cell type-specific markers used during the deconvolution process.
+Users can also estimate cell-specific expression profiles in a separate function described above.
