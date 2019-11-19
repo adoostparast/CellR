@@ -83,8 +83,10 @@ Note: Use of these arguments depends on the charachteristics of the data and the
 # Estimating cell-specific gene expression profiles using CellR
 
 In order to estimate cell specific gene expression profiles from RNA-seq count metrices, users can use the following function in CellR: 
+
 Expression_estimate<-function(Data, Proportion, Cell_type)
-Here, 'Data' is the raw count matrix; 'Proportion' is the cellular proportion of each cell type in each sample where each row is a sample and each column denotes a cell-type; and 'Cell_type' is the column number in the Proportion matrix for which we wan to estimate its specific expression profile.
+
+Here, 'Data' is the raw count matrix; 'Proportion' is the cellular proportion of each cell type in each sample where each row is a sample and each column denotes a cell-type; and 'Cell_type' is the column number in the Proportion matrix for which we want to estimate its specific expression profile.
 
 Note that the syntax of both matrices in the function 'Expression_estimate' is exactly as the matrices shown above.
 
