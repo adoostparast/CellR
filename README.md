@@ -95,7 +95,7 @@ The arguments in this function is as follows:
 'Proportion' is the cellular proportion of each cell type in each sample where each row is a sample and each column denotes a cell-type.
 
 * **Cell type.**
-Cell_type' is the column number in the Proportion matrix for which we want to estimate its specific expression profile.
+'Cell_type' is the column number in the Proportion matrix for which we want to estimate its specific expression profile.
 
 Note that the syntax of both matrices in the function 'Expression_estimate' is exactly as the matrices shown above.
 
