@@ -79,6 +79,11 @@ Clusters<-Output$Clusters  # 'Clusters' is a table showing the type (cluster) of
 
 Note: Use of these arguments depends on the charachteristics of the data and the users can change these numbers in other applications.
 
+
+Estimating cell-specific gene expression profiles using CellR:
+
+In order to estimate cell specific gene expression profiles from RNA-seq count metrices, users can use the following function in CellR:
+Expression_estimate<-function(Data, Proportion, Cell_type)
 ------------------------------------------------------------------------------------------------------------------------
 If you have any questions, please contact me at doostparaa@email.chop.edu.
 
