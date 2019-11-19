@@ -88,13 +88,13 @@ Expression_estimate<-function(Data, Proportion, Cell_type)
 
 The arguments in this function is as follows:
 
-* **Bulk RNA-seq data**
+* **Bulk RNA-seq data.**
 'Data' is the raw count matrix in which each row represents a gene and each columns denotes a sample
 
-* **Cellular proportion**
+* **Cellular proportion.**
 'Proportion' is the cellular proportion of each cell type in each sample where each row is a sample and each column denotes a cell-type.
 
-* **Cell type**
+* **Cell type.**
 Cell_type' is the column number in the Proportion matrix for which we want to estimate its specific expression profile.
 
 Note that the syntax of both matrices in the function 'Expression_estimate' is exactly as the matrices shown above.
