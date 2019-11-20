@@ -10,9 +10,10 @@ CellR bears some dependencies including dplyr, Matrix, Seurat (v 2.3.0, To insta
 CellR can be installed from source after downloading the CellR zip file using: 
 
 > install.packages("devtools")
+
 devtools::install_github("adoostparast/CellR")
 
-install.packages("CellR_0.1.0.tar.gz"). Next, it can be loaded using: library('CellR').
+Next, it can be loaded using: library('CellR').
 # Arguments
 The general format for calling CellR to estimate cellular proportions is as follows: 
 Output<-Deconvolution(RNA-seq, scRNA-seq, GTEx, Cell-types, Minimum-cells, Minimum-genes, Dimension, Alpha, Maximum_gene_counts, Minimum_gene_counts)
