@@ -1,0 +1,11 @@
+Package: CellR
+Type: Package
+Title: Cell-type Deconvolution (CellR)
+Version: 0.1.0
+Author: Abolfazl Doostparast Torshizi
+Maintainer: Abolfazl Doostparast Torshizi <doostparaa@email.chop.edu>
+Description: This package is intended to recover the true proportion of the constituent cell-types within bulk RNA-seq samples.
+License: CHOP
+Depends:  dplyr (>= 0.7.6), text2vec (>= 0.5.1), gtools (>= 3.8.1), Metrics (>= 0.1.4), MASS (>= 7.3-50), Seurat (>= 2.3.0), edgeR (>= 3.20.9), glmnet (>= 2.0-16), Matrix (>= 1.2-14)
+Encoding: UTF-8
+LazyData: true
