@@ -7,6 +7,10 @@ CellR is a single cell-based data-driven method to recover and quantify the cell
 # Installation
 CellR bears some dependencies including dplyr, Matrix, Seurat (v 2.3.0, To install, check this out: https://satijalab.org/seurat/install.html), edgeR, glmnet, and text2vec. Please make sure to have devtools installed on your machine. CellR automatically installs the required dependencies during the initial installation. However, in case of failure, users can manually install the mentioned packages. **CellR is built under R vesrion 3.5.1**.
 
+Seurat (v 2.3.0) can be installed as follows:
+
+> devtools::install_version(package = 'Seurat', version = package_version('2.3.0'))
+
 CellR can be installed from GitHub as follows: 
 
 > install.packages("devtools")
