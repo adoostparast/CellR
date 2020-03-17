@@ -111,7 +111,7 @@ The arguments in this function is as follows:
 
 As an example, users can download two files 'Raw_CMC.txt' and 'CMC Proportions.txt' from this link https://drive.google.com/open?id=1M77dq0qg6E0_gT8pWwMDTexBuE7azvL4 which represent the bulk count matrix and cellular proportions, respectively. Suppose that the user wants to estimate the cell-specific gene expression of the first gene in the count data in Excitatory neurons. The following comand will get the job done:
 
-> Data<-read.table("Raw_CMC.txt",header=TRUE)
+> Data<-read.table("Raw_Data.txt",header=TRUE)
 
 > Data<- Data[c(1),]
 
