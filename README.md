@@ -117,7 +117,7 @@ As an example, users can download two files 'Raw_CMC.txt' and 'CMC Proportions.t
 
 > Proportion<-read.table("CMC Proportions.txt",header=TRUE)
 
-> Expression_estimate<-function(Data, Proportion, 3)
+> Output<-Expression_estimate(Data, Proportion, 3)
 
 Note that the syntax of both matrices in the function 'Expression_estimate' is exactly as the matrices shown above.
 
