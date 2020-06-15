@@ -96,7 +96,7 @@ Note: Use of these arguments depends on the charachteristics of the data and the
 
 In order to estimate cell specific gene expression profiles from RNA-seq count metrices, users can use the following function in CellR: 
 
-Expression_estimate<-function(Data, Proportion, Frequency, Reference, Cell_type)
+Inferred_Expression<-Expression_estimate((Data, Proportion, Frequency, Reference, Cell_type)
 
 The arguments in this function is as follows:
 
@@ -116,13 +116,15 @@ The arguments in this function is as follows:
 
 As an example, users can download two files 'Raw_CMC.txt' and 'CMC Proportions.txt' from this link https://drive.google.com/open?id=1M77dq0qg6E0_gT8pWwMDTexBuE7azvL4 which represent the bulk count matrix and cellular proportions, respectively. Suppose that the user wants to estimate the cell-specific gene expression of the first gene in the count data in Excitatory neurons. The following comand will get the job done:
 
-> Data<-read.table("Raw_Data.txt",header=TRUE)
+> Data<-read.table("Bulk_data.txt",header=TRUE)
 
-> Data<- Data[c(1),]
+> Proportion<-read.table("Proportions.txt", header=TRUE)
 
-> Proportion<-read.table("CMC Proportions.txt",header=TRUE)
+>Frequency<-read.table("Frequency.txt", header=TRUE)
 
-> Output<-Expression_estimate(Data, Proportion, 3)
+>Reference<-read.table("Reference.txt",header=TRUE)
+
+> Output<-Expression_estimate(NewData, Proportion, Frequency, Reference, 1)
 
 Note that the syntax of both matrices in the function 'Expression_estimate' is exactly as the matrices shown above.
 
