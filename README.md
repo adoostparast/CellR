@@ -114,7 +114,7 @@ The arguments in this function is as follows:
 * **Cell type.**
 'Cell_type' is the column number in the Proportion matrix for which we want to estimate its specific expression profile.
 
-As an example, users can download two files 'Raw_CMC.txt' and 'CMC Proportions.txt' from this link https://drive.google.com/open?id=1M77dq0qg6E0_gT8pWwMDTexBuE7azvL4 which represent the bulk count matrix and cellular proportions, respectively. Suppose that the user wants to estimate the cell-specific gene expression of the first gene in the count data in Excitatory neurons. The following comand will get the job done:
+As an example, users can download the files used belov at https://drive.google.com/open?id=1M77dq0qg6E0_gT8pWwMDTexBuE7azvL4 which represent a simple example to run. Suppose that the user wants to estimate the cell-specific gene expression of the first gene in the count data in Excitatory neurons. The following comand will get the job done:
 
 > Data<-read.table("Bulk_data.txt",header=TRUE)
 
@@ -124,7 +124,7 @@ As an example, users can download two files 'Raw_CMC.txt' and 'CMC Proportions.t
 
 >Reference<-read.table("Reference.txt",header=TRUE)
 
-> Output<-Expression_estimate(NewData, Proportion, Frequency, Reference, 1)
+> Output<-Expression_estimate(Data, Proportion, Frequency, Reference, 1)
 
 Note that the syntax of both matrices in the function 'Expression_estimate' is exactly as the matrices shown above.
 
