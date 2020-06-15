@@ -96,7 +96,7 @@ Note: Use of these arguments depends on the charachteristics of the data and the
 
 In order to estimate cell specific gene expression profiles from RNA-seq count metrices, users can use the following function in CellR: 
 
-Expression_estimate<-function(Data, Proportion, Cell_type)
+Expression_estimate<-function(Data, Proportion, Frequency, Reference, Cell_type)
 
 The arguments in this function is as follows:
 
@@ -105,6 +105,11 @@ The arguments in this function is as follows:
 
 * **Cellular proportion.**
 'Proportion' is the cellular proportion of each cell type in each sample where each row is a sample and each column denotes a cell-type.
+* **Frequency.**
+'Frequency' denotes a table of the inferred number of cells within a bulk data.
+
+* **Reference.**
+'Reference' denotes the scRNA-seq data used during the deconvolution process from the tissue of interest.
 
 * **Cell type.**
 'Cell_type' is the column number in the Proportion matrix for which we want to estimate its specific expression profile.
