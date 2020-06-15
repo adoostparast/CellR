@@ -132,7 +132,3 @@ Note that the syntax of both matrices in the function 'Expression_estimate' is e
 If you have any questions, please contact me at doostparaa@email.chop.edu.
 
 
-
-# Output
-CellR outputs an R object which includes the percentage of the proportion of each identified cluster from the reference scRNA-seq data within the bulk RNA-seq sample as well as the identified cell type-specific markers used during the deconvolution process.
-Users can also estimate cell-specific expression profiles in a separate function described above.
