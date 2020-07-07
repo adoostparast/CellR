@@ -98,7 +98,7 @@ Deconvolution<-function(Bulk, SingleCell, Bulk1, Alamat,MinCell,Mingene,Dimensio
   colnames(ssMM)<-colnames(cc)
 
   #----------------------------------Bulk RNA-Seq ----------------------------------------------
-  bulkTamiz<-cpm(Bulk)
+  bulkTamiz<-cpm(Bulk, normalized.lib.sizes=TRUE, log=FALSE)
   bulkTamiz<-as.data.frame(bulkTamiz)
   bulkTamizFinal<-bulkTamiz[rownames(FinalMarkers),]
   bulkTamizFinal<-as.data.frame(bulkTamizFinal)
@@ -175,6 +175,8 @@ Deconvolution<-function(Bulk, SingleCell, Bulk1, Alamat,MinCell,Mingene,Dimensio
   OutputFinal<-as.data.frame(OutputFinal)
   rownames(OutputFinal)<-row.names(UniqueClusters)
 
+  OutputFreq<-OutputFinal   #Jadid
+
   for (Xha in 1:ncol(Finalbulk)){
 
     Finalbulki<-as.data.frame(Finalbulki)
@@ -208,6 +210,8 @@ Deconvolution<-function(Bulk, SingleCell, Bulk1, Alamat,MinCell,Mingene,Dimensio
     row.names(Output)<-rownames(UniqueClusters)
     colnames(Output)<-colnames(Covariates)
 
+    Frequency_Matrix<-Output  # Jadid
+
     for (i in 1:ncol(Covariates)){
       Tempo<-Covariates[,i]
       Tempo<-as.data.frame(Tempo)
@@ -221,35 +225,45 @@ Deconvolution<-function(Bulk, SingleCell, Bulk1, Alamat,MinCell,Mingene,Dimensio
       Percent<-oo$Freq/sum(oo$Freq)*100
       oo$Var1<-Percent
       Output[,i]<-oo[rownames(Output),1]
+
+      Frequency_Matrix[,i]<-oo[rownames(Output),c("Freq")] # Jadid
+
+
     }
 
-    OutputFinal[,Xha]<-Output}
+    OutputFinal[,Xha]<-Output
+    OutputFreq[,Xha]<-Frequency_Matrix # Jadid
+
+    }
 
   colnames(OutputFinal)<-colnames(Bulk)
+  colnames(OutputFreq)<-colnames(Bulk)  # Jadid
 
-  FinalOutput<-list("Proportion"=OutputFinal,"Clusters"=Clusters)
-  return(list("Proportion"=OutputFinal, "Markers"= FinalMarkers,"Clusters"=Clusters))
+  FinalOutput<-list("Proportion"=OutputFinal,"Clusters"=Clusters, "Frequency"=OutputFreq)    # Taghir
+  return(list("Proportion"=OutputFinal, "Markers"= FinalMarkers,"Clusters"=Clusters, "Frequency"=OutputFreq))   # Taghir
   #  return(list("Proportion"=OutputFinal))
 }
 
 
 
 
-Expression_estimate<-function(Data, Proportion, Cell_type){
-
+Expression_estimate<-function(Data, Proportion, Frequency, Reference, Cell_type){  # Jadid
 
   library(MASS)
   library(Metrics)
   library(gtools)
   library(text2vec)
+  library(edgeR)
+  #Lambda=.5
 
-
+  #Data<-cpm(Bulk, normalized.lib.sizes=TRUE, log=FALSE)
+  Frequency<-t(Frequency)
+  aa<-do.call("rbind", replicate(nrow(Data), colSums(Frequency), simplify = FALSE))  # Jadid
+  Data<-Data/aa
   Data<-Data[,rownames(Proportion)]
+  Reference<-Reference[rownames(Data),]
 
-
-
-
-  T_max=200
+  T_max=300
   T_Min=1
   Temp=T_max
   Alpha=0.05
@@ -258,29 +272,43 @@ Expression_estimate<-function(Data, Proportion, Cell_type){
 
   Exp<-matrix(0,nrow(Proportion),nrow(Data))
   Exp<-as.data.frame(Exp)
-
+  rownames(Exp)<-rownames(Proportion)  # Jadid
+  colnames(Exp)<-rownames(Data) # Jadid
 
 
   for (i in 1:nrow(Data)){
     cat("\nGene =", i)
 
-    Mean=mean(as.numeric(Data[c(i),]))      # Mean_Ast >-Mean
+    #X<-cbind(matrix(1,nrow(Proportion),1),Proportion)
+    #Y<-t(Data[c(i),])
+    #XX<-as.matrix(X)
 
-    theta = sample(1:5, 1)                  # theta_Ast >-theta
+    Mean=Reference[c(i),]     # Mean_Ast >-Mean
+
+    theta = runif(1, 0, 1)                  # theta_Ast >-theta
 
 
-    Matris=matrix(0,1,2)
+    Matris=matrix(0,ncol(Proportion),2)
     Matris<-as.data.frame(Matris)
-    Matris[c(1),c(1)]<-Mean
-    Matris[c(1),c(2)]<-theta
+    Matris[,c(1)]<-t(Mean)
+    Matris[,c(2)]<-theta
+    Matris_new<-Matris
 
-    Ast<-as.data.frame(rnegbin(ncol(Data), mu = Mean, theta = theta))
+    Ast<-as.data.frame(matrix(0,nrow(Proportion),ncol(Proportion)))
+    Ast_New<-Ast
+
+    for (w in 1:nrow(Matris)){
+      Ast[,c(w)]<-rnegbin(ncol(Data), mu = Matris[c(w),c(1)], theta = Matris[c(w),c(2)])
+
+    }
+
+    # Ast<-as.data.frame(rnegbin(ncol(Data), mu = Mean, theta = theta))
 
     Intermediate<-Ast
-    colnames(Intermediate)<-Cell_type
-    Jam<-Proportion[,c(Cell_type)]*Intermediate
+    # colnames(Intermediate)<-Cell_type
+    Jam<-Proportion*Intermediate
     ee<-as.data.frame(rowSums(Jam))
-    Error_old<-rmse(as.numeric(as.matrix(ee)),as.numeric(as.matrix(Data[c(i),])))
+    Error_old<-rmse(as.numeric(as.matrix(ee)),as.numeric(as.matrix(Data[c(i),]))) #+Lambda*sum(Matris[,c(1)]^2)
 
 
 
@@ -288,35 +316,61 @@ Expression_estimate<-function(Data, Proportion, Cell_type){
 
 
 
-      for (k in 1:100){
+      for (k in 1:200){
 
         Prob=sample(1:2, 1)
 
         if (Prob==1){
 
-          Mean_New=Mean+runif(1, -.5, .5)*Mean
-          theta_New = theta+runif(1, -.3, .3)*theta}
 
-        else {
-          Mean_New=runif(1, mean(as.numeric(Data[c(i),]))-sd(as.numeric(Data[c(i),])), mean(as.numeric(Data[c(i),]))-sd(as.numeric(Data[c(i),])))
-          theta_New = sample(1:5, 1)}
+          Matris_new[,c(1)]<-Matris[,c(1)]+runif(nrow(Matris), -.5, .5)*Matris[,c(1)]
+          Matris_new[,c(2)]<-Matris[,c(2)]+runif(nrow(Matris), 0, 1)*Matris[,c(2)]
 
-        Ast_New<-as.data.frame(rnegbin(ncol(Data), mu = Mean_New, theta = theta_New))
+          # Mean_New=Mean+runif(1, -.5, .5)*Mean
+          # theta_New = theta+runif(1, -.3, .3)*theta
+        }
+
+        if (Prob==2) {
+
+          Matris_new[,c(1)]<-as.data.frame(runif(nrow(Matris), mean(as.numeric(Data[c(i),]))-sd(as.numeric(Data[c(i),])), mean(as.numeric(Data[c(i),]))+sd(as.numeric(Data[c(i),]))))
+          Matris_new[,c(2)]<-as.data.frame(runif(nrow(Matris),0,1))
+          #Matris_new[,c(2)]<-as.data.frame(sample(1:5, nrow(Matris),replace=TRUE))
+
+          # Mean_New=runif(1, mean(as.numeric(Data[c(i),]))-sd(as.numeric(Data[c(i),])), mean(as.numeric(Data[c(i),]))-sd(as.numeric(Data[c(i),])))
+          # theta_New = sample(1:5, 1)
+        }
+
+        #        if (Prob==3) {
+
+        #        rows <- sample(nrow(Matris))
+        #         Matris_new[,c(1)] <- Matris[rows, c(1)]
+        #         Matris_new[,c(2)] <- Matris[rows, c(2)]
+
+
+        #      }
+
+        for (w in 1:nrow(Matris)){
+          Ast_New[,c(w)]<-rnegbin(ncol(Data), mu = Matris_new[c(w),c(1)], theta = Matris_new[c(w),c(2)])
+
+        }
+
+        # Ast_New<-as.data.frame(rnegbin(ncol(Data), mu = Mean_New, theta = theta_New))
 
         Intermediate1<-Ast_New
-        colnames(Intermediate1)<-Cell_type
-        Jam1<-Proportion[,c(Cell_type)]*Intermediate1
+        #colnames(Intermediate1)<-Cell_type
+        Jam1<-Proportion*Intermediate1
         ee1<-as.data.frame(rowSums(Jam1))
-        Error_New<-rmse(as.numeric(as.matrix(ee1)),as.numeric(as.matrix(Data[c(i),])))
+        Error_New<-rmse(as.numeric(as.matrix(ee1)),as.numeric(as.matrix(Data[c(i),]))) # +Lambda*sum(Matris_new[,c(1)]^2)
 
         if (Error_New<Error_old){
 
 
-          Mean<-Mean_New
-          theta<-theta_New
+          Matris<-Matris_new
+          #Mean<-Mean_New
+          #theta<-theta_New
 
-          Matris[c(1),c(1)]<-Mean
-          Matris[c(1),c(2)]<-theta
+          #Matris[c(1),c(1)]<-Mean
+          #Matris[c(1),c(2)]<-theta
 
 
           cat("\nTemp =", Temp)
@@ -328,13 +382,14 @@ Expression_estimate<-function(Data, Proportion, Cell_type){
         else {
 
           P=1-exp(Temp*(Error_old-Error_New))
-          if(P<0.0001){
+          if(P<0.01){
 
-            Mean<-Mean_New
-            theta<-theta_New
+            Matris<-Matris_new
+            # Mean<-Mean_New
+            #theta<-theta_New
 
-            Matris[c(1),c(1)]<-Mean
-            Matris[c(1),c(2)]<-theta
+            # Matris[c(1),c(1)]<-Mean
+            # Matris[c(1),c(2)]<-theta
 
             Error_old<-Error_New
 
@@ -351,13 +406,21 @@ Expression_estimate<-function(Data, Proportion, Cell_type){
     Counter=1
     Temp=T_max
 
-    Varoon<-t(as.data.frame(t(Matris)[c(1),]))
-    Varoon<-Varoon[rep(seq_len(nrow(Varoon)), each = nrow(Proportion)), ]
-    Out<-Proportion[,c(Cell_type)]*Varoon
 
+
+    Re<-Matris[c(Cell_type),1]
+    Varoon<-rep(Re, each=nrow(Proportion))
+    Out<-Frequency[,c(Cell_type)]*Varoon
+
+    # Varoon<-t(as.data.frame(t(Matris)[,c(Cell_type)]))
+    #Varoon<-Varoon[rep(seq_len(nrow(Varoon)), each = nrow(Proportion)), ]
+    #Out<-Proportion[,c(Cell_type)]*Varoon
+    #Out<-Varoon # Jadid
 
     Exp[,c(i)]<-Out
   }
-
+  #FinalExp<-Exp[c(1),]
+  #colnames(FinalExp)<-rownames(Data)
   return(Exp)
 }
+
