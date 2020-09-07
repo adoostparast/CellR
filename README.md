@@ -114,7 +114,7 @@ The arguments in this function is as follows:
 * **Cell type.**
 'Cell_type' is the column number in the Proportion matrix for which we want to estimate its specific expression profile.
 
-As an example, users can download the files used belov at https://drive.google.com/open?id=1M77dq0qg6E0_gT8pWwMDTexBuE7azvL4 which represent a simple example to run. Suppose that the user wants to estimate the cell-specific gene expression levels in excitatory neurons (Ex). Ex is denoted in the first column of the Frequency and Proportions matrices. Therefore, the final argument of the 'Expression_estimate' function will be 1 denoting this cell type. . The same can be done for the other cell types. The following comand will get the job done:
+As an example, users can download the files used belov at https://drive.google.com/open?id=1M77dq0qg6E0_gT8pWwMDTexBuE7azvL4 which represent a simple example to run. Suppose that the user wants to estimate the cell-specific gene expression levels in excitatory neurons (Ex). Ex is denoted in the first column of the Frequency and Proportions matrices. Therefore, the final argument of the 'Expression_estimate' function will be 1 denoting this cell type. The same can be done for the other cell types. The following comand will get the job done:
 
 > Data<-read.table("Bulk_data.txt",header=TRUE)
 
