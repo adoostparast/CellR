@@ -1,7 +1,7 @@
 ![Cellr](https://user-images.githubusercontent.com/24727526/65530825-aaaf0b00-dec6-11e9-9531-ca8a72a9abd4.JPG)
 
 # CellR
-CellR is a single cell-based data-driven method to recover and quantify the cellular composition of bulk transcriptional data. It is a fully unsupervised approach based on clustering the reference single-cell RNA-Seq (scRNA-seq) followed by extracting the unique marker genes defining each cell cluster. 
+CellR is a single cell-based data-driven method to recover and quantify the cellular composition of bulk transcriptional data. It is a fully unsupervised approach based on clustering the reference single-cell RNA-Seq (scRNA-seq) followed by extracting the unique marker genes defining each cell cluster (Preprint URL: https://www.biorxiv.org/content/10.1101/2020.05.28.121483v2.abstract). 
 
 
 # Installation
